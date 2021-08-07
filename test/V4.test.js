@@ -103,13 +103,13 @@ describe('Protocol V4', () => {
 
             it('should encrypt and decrypt successfully - callback api', (done) => {
 
-                V4.encrypt(message, key, '', (err, token) => {
+                V4.encrypt(message, key, '', '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 9), 'v4.local.');
 
-                    V4.decrypt(token, key, '', (err, data) => {
+                    V4.decrypt(token, key, '', '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -122,7 +122,7 @@ describe('Protocol V4', () => {
 
             it('should encrypt and decrypt successfully - promise api', (done) => {
 
-                V4.encrypt(message, key, '')
+                V4.encrypt(message, key, '', '')
                     .then((token) => {
 
                         assert.equal(typeof token, 'string');
@@ -145,7 +145,7 @@ describe('Protocol V4', () => {
             it('should encrypt and decrypt successfully - async/await api', (done) => {
 
                 (async () => {
-                    const token = await V4.encrypt(message, key, '');
+                    const token = await V4.encrypt(message, key, '', '');
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 9), 'v4.local.');
 
@@ -161,14 +161,14 @@ describe('Protocol V4', () => {
 
             it('should encrypt and decrypt successfully with footer - callback api', (done) => {
 
-                V4.encrypt(message, key, footer, (err, token) => {
+                V4.encrypt(message, key, footer, '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 9), 'v4.local.');
                     assert.equal(token.substring(token.length - 8, token.length), encoded_footer);
 
-                    V4.decrypt(token, key, footer, (err, data) => {
+                    V4.decrypt(token, key, footer, '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -230,13 +230,13 @@ describe('Protocol V4', () => {
 
             it('should encrypt and decrypt successfully - callback api', (done) => {
 
-                V4.encrypt(message, key, '', (err, token) => {
+                V4.encrypt(message, key, '', '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 9), 'v4.local.');
 
-                    V4.decrypt(token, key, '', (err, data) => {
+                    V4.decrypt(token, key, '', '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -288,14 +288,14 @@ describe('Protocol V4', () => {
 
             it('should encrypt and decrypt successfully with footer - callback api', (done) => {
 
-                V4.encrypt(message, key, footer, (err, token) => {
+                V4.encrypt(message, key, footer, '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 9), 'v4.local.');
                     assert.equal(token.substring(token.length - 8, token.length), encoded_footer);
 
-                    V4.decrypt(token, key, footer, (err, data) => {
+                    V4.decrypt(token, key, footer, '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -400,7 +400,7 @@ describe('Protocol V4', () => {
 
             it('should error on decryption with an invalid key version - callback api', (done) => {
 
-                V4.encrypt('test', key, '', function(err, token) {
+                V4.encrypt('test', key, '', '', function(err, token) {
                     if (err) { return done(err); }
                     assert.ok(token);
 
@@ -488,13 +488,13 @@ describe('Protocol V4', () => {
 
             it('should sign and verify successfully - callback api', (done) => {
 
-                V4.sign(message, sk, '', (err, token) => {
+                V4.sign(message, sk, '', '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 10), 'v4.public.');
 
-                    V4.verify(token, pk, '', (err, data) => {
+                    V4.verify(token, pk, '', '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -546,14 +546,14 @@ describe('Protocol V4', () => {
 
             it('should sign and verify successfully with footer - callback api', (done) => {
 
-                V4.sign(message, sk, footer, (err, token) => {
+                V4.sign(message, sk, footer, '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 10), 'v4.public.');
                     assert.equal(token.substring(token.length - 8, token.length), encoded_footer);
 
-                    V4.verify(token, pk, footer, (err, data) => {
+                    V4.verify(token, pk, footer, '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -615,13 +615,13 @@ describe('Protocol V4', () => {
 
             it('should sign and verify successfully - callback api', (done) => {
 
-                V4.sign(message, sk, '', (err, token) => {
+                V4.sign(message, sk, '', '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 10), 'v4.public.');
 
-                    V4.verify(token, pk, '', (err, data) => {
+                    V4.verify(token, pk, '', '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -673,14 +673,14 @@ describe('Protocol V4', () => {
 
             it('should sign and verify successfully with footer - callback api', (done) => {
 
-                V4.sign(message, sk, footer, (err, token) => {
+                V4.sign(message, sk, footer, '', (err, token) => {
                     if (err) { return done(err); }
 
                     assert.equal(typeof token, 'string');
                     assert.equal(token.substring(0, 10), 'v4.public.');
                     assert.equal(token.substring(token.length - 8, token.length), encoded_footer);
 
-                    V4.verify(token, pk, footer, (err, data) => {
+                    V4.verify(token, pk, footer, '', (err, data) => {
                         if (err) { return done(err); }
 
                         assert.equal(typeof data, 'string');
@@ -785,7 +785,7 @@ describe('Protocol V4', () => {
 
             it('should error on verifying with an invalid key version - callback api', (done) => {
 
-                V4.sign('test', sk, '', function(err, token) {
+                V4.sign('test', sk, '', '', function(err, token) {
                     if (err) { return done(err); }
                     assert.ok(token);
 
